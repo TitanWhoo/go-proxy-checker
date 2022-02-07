@@ -6,7 +6,7 @@ It can Batch check whether your HTTP/HTTPS proxies is valid and can hide your IP
 
 ## Build
 
-clone the project code and use `go build`  command to build
+download the source code files and use `go build`  command to build
 
 ## Usage of Go Proxy Checker
 
@@ -18,22 +18,43 @@ clone the project code and use `go build`  command to build
   -http
         use http instead of https when checking
   -i string
-        the input proxy file (default "input.txt")
+        the input unchecked proxy list file (default "input.txt")
   -o string
-        the output proxy file (default "output.txt")
+        the output checked proxy list file (default "output.txt")
 ```
 
 ## Example
 
-### #1 check proxies without HTTPS and input/output file name
+### Input and output file format
+
+You need to confirm that your proxy server file to be verified is in the following format：
+
+IP Address: Port Number (one record per line)
+
+```
+127.0.0.1:8080
+127.0.0.101:3128
+127.0.0.102:7890
+127.0.0.103:8888
+...
+```
+
+### Common Usage Example
+
+#### 1. Just check you proxy with default settings 
+
+```
+./go-proxy-checker
+```
+
+#### 2. Check proxies without HTTPS and input/output file name
 
 ```shell
-go-proxy-checker -http -i fresh_list.txt -o success.txt
+./go-proxy-checker -http -i fresh_list.txt -o success.txt
 ```
 
-### #2 Specify the number of concurrent (default 2000)
+#### 3. Specify the number of concurrent (default 2000)
 
 ```
-go-proxy-checker -c 100
+./go-proxy-checker -c 100
 ```
-

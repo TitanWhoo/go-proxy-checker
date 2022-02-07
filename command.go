@@ -32,21 +32,21 @@ func initCheckUrl() {
 func startCommand() {
 	var err error
 	flag.Parse()
+	InputFile, err = os.Open(inputFilePath)
+	if err != nil {
+		fmt.Println(err.Error())
+		flag.Usage()
+		os.Exit(-1)
+	}
+	OutputFile, err = os.OpenFile(outputFilePath, os.O_RDWR|os.O_APPEND|os.O_CREATE, 0644)
+	if err != nil {
+		fmt.Println(err.Error())
+		flag.Usage()
+		os.Exit(-1)
+	}
 	if help {
 		flag.Usage()
 		os.Exit(0)
-	}
-
-	InputFile, err = os.Open(inputFilePath)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(-1)
-	}
-
-	OutputFile, err = os.OpenFile(outputFilePath, os.O_RDWR|os.O_APPEND|os.O_CREATE, 0644)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(-1)
 	}
 	initCheckUrl()
 }

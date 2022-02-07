@@ -1,8 +1,10 @@
 # Go Proxy Checker
 
+[中文版文档](https://github.com/titanhw/go-proxy-checker/blob/master/README_zh.md)
+
 High Performance HTTP(S) Proxy Checker Written in GO
 
-It can Batch check whether your HTTP/HTTPS proxies is valid and can hide your IP address by request [httpbin.org/get](https://httpbin.org/get)
+It can Batch check whether your HTTP/HTTPS proxies is valid and anonymous, by sending request to [httpbin.org/get](https://httpbin.org/get) .
 
 ## Build
 
@@ -43,7 +45,7 @@ IP Address: Port Number (one record per line)
 
 #### 1. Just check you proxy with default settings 
 
-```
+```shell
 ./go-proxy-checker
 ```
 
@@ -55,6 +57,6 @@ IP Address: Port Number (one record per line)
 
 #### 3. Specify the number of concurrent (default 2000)
 
-```
+```shell
 ./go-proxy-checker -c 100
 ```

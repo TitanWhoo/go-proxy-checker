@@ -11,6 +11,10 @@ func CheckProxy(proxy string) bool {
 	if strings.TrimSpace(proxy) == "" {
 		return false
 	}
+	// no protocol, add //
+	if !strings.Contains(proxy, "//") {
+		proxy = "//" + proxy
+	}
 	// get resources from pool and release after operations
 	request := requestPool.Get().(*gorequest.SuperAgent)
 	resp := resultPool.Get().(map[string]interface{})

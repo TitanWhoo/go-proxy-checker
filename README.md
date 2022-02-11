@@ -4,7 +4,9 @@
 
 High Performance HTTP(S) Proxy Checker Written in GO
 
-It can Batch check whether your HTTP/HTTPS proxies is valid and anonymous, by sending request to [httpbin.org/get](https://httpbin.org/get) .
+It can Batch check whether your proxies is valid and anonymous, by sending request to [httpbin.org/get](https://httpbin.org/get) .
+
+Support **HTTP(S)**, **SOCKS4/5** and Authentication
 
 ## Build
 
@@ -29,7 +31,7 @@ download the source code files and use `go build`  command to build
 
 ### Input and output file format
 
-You need to confirm that your proxy server file to be verified is in the following format：
+Simple Format
 
 IP Address: Port Number (one record per line)
 
@@ -41,15 +43,25 @@ IP Address: Port Number (one record per line)
 ...
 ```
 
+Or with Scheme and Authentication
+
+```
+foo:2138
+http://foo:2138
+http://usename:password@ip:port
+socks5://foo:1080
+https://bar:3128
+```
+
 ### Common Usage Example
 
-#### 1. Just check you proxy with default settings 
+#### 1. Just check you proxy with default settings
 
 ```shell
 ./go-proxy-checker
 ```
 
-#### 2. Check proxies without HTTPS and input/output file name
+#### 2. Use http instead of https when checking and specify the input/output filename
 
 ```shell
 ./go-proxy-checker -http -i fresh_list.txt -o success.txt

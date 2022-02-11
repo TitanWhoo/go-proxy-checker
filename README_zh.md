@@ -4,7 +4,11 @@
 
 基于Golang的高性能的HTTP/HTTPS代理服务器验证工具
 
-它可以批量检查你的HTTP/HTTPS代理是否有效和匿名，通过发送请求到[httpbin.org/get](https://httpbin.org/get)。
+它可以批量检查你的代理服务器是否有效和匿名，通过发送请求到[httpbin.org/get](https://httpbin.org/get)。
+
+同时支持HTTP，HTTPS，SOCKS4/5 等多种代理类型
+
+支持代理服务器用户名密码验证
 
 ## 构建
 
@@ -13,7 +17,7 @@
 ## 用法
 
 ```shell
-go-proxy-checker 支持如下参数：
+go-proxy-checker 支持如下参数:
   -h    读取有关此工具的说明文本
   -c int
         同时进行代理服务器验证的并发数目（默认为2000）
@@ -29,9 +33,7 @@ go-proxy-checker 支持如下参数：
 
 ### 输入和输出文件格式
 
-你需要确认你要验证的代理服务器文件的格式如下：
-
-IP地址:端口号（每行一条记录）
+简单格式 IP地址:端口号（每行一条记录）
 
 ```
 127.0.0.1:8080
@@ -41,9 +43,19 @@ IP地址:端口号（每行一条记录）
 ...
 ```
 
-### 常见的使用示例
+或者指定代理服务器类型和用户名/密码
 
-#### 1. 直接运行程序，使用默认参数验证代理 
+```
+foo:2138
+http://foo:2138
+http://usename:password@ip:port
+socks5://foo:1080
+https://bar:3128
+```
+
+### 常见的使用命令
+
+#### 1. 直接运行程序，使用默认参数验证代理
 
 ```shell
 ./go-proxy-checker
